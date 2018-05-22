@@ -1,0 +1,10 @@
+<nav search_view="search" color="#1f416d">
+  <view name="angular_examples_welcome" default='true'/>
+  <collection label="Demos">
+  	<view name="demo1__simple_binding" />
+    <view name="demo2__dynamic_table" />
+  </collection>
+  <view name="angular_examples_details" default='true'/>
+  <view name="dashboards" />
+  <view name="search" />
+</nav>

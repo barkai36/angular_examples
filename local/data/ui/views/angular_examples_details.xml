@@ -1,0 +1,37 @@
+<dashboard>
+  <label>How to implement Angular</label>
+  <row>
+    <panel>
+      <html>
+    <BR/>
+    To accomplish successfully both Angular and Splunk functionallity, follow the following 5 steps: <BR/>
+    1. Create a simple XML dashboard and convert to HTML dashboard.  <BR/>
+    2. Add angular.min.js into HTML code
+    <pre>&lt;script src="{{SPLUNKWEB_URL_PREFIX}}/static/app/angular_demo/angular.min.js" type="text/javascript"&gt;&lt;/script&gt;</pre>
+    (Optional)<BR/>
+    Add your own js file for custom angular code <BR/>
+    <pre>&lt;script src="{{SPLUNKWEB_URL_PREFIX}}/static/app/angular_demo/my_script.js" type="text/javascript"&gt;&lt;/script&gt;</pre>
+    
+    
+    3. Add &lt;div&gt; tag into HTML code with angular features: <i>ng-app</i> and <i>ng-controller</i>
+    <pre>&lt;div ng-app="myApp" ng-controller="myCtrl"&gt;</pre>
+    4. Use angular references in html elements to bind your html objects to scope objects in code.
+    <pre>&lt;element ng-model="variable"&gt;</pre>
+    5.
+    (Optional) In your own js file, in order to have the ability of both Splunk Javascript API and Angular functions, use the following libraries loading order: <BR/>
+    First start up angular function, then load inside the Splunk require function <BR/>
+    <pre>// required app for angular
+var app = angular.module('myApp', []);
+
+app.controller('myCtrl',['$scope',function($scope) {
+	require(["splunkjs/mvc",'splunkjs/mvc/simplexml/ready!'],function(mvc) {
+          // YOUR CODE HERE
+	});
+}]);</pre>
+<BR/>
+        <BR/>
+    <BR/>
+    </html>
+    </panel>
+  </row>
+</dashboard>

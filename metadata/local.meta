@@ -1,0 +1,53 @@
+[app/ui]
+version = 7.1.0
+modtime = 1527014663.138000300
+
+[app/launcher]
+version = 7.1.0
+modtime = 1527014663.145000300
+
+[nav/default]
+version = 7.0.0
+modtime = 1524428911.183000100
+
+[app/package/check_for_updates]
+version = 7.1.0
+modtime = 1527014663.148000300
+
+[views/demo1__simple_binding]
+owner = admin
+version = 7.0.0
+modtime = 1521810974.622200700
+
+[html/demo1__simple_binding]
+access = read : [ * ], write : [ admin, power ]
+owner = admin
+version = 7.1.0
+modtime = 1527014910.802000300
+
+[]
+access = read : [ admin, angular_user ], write : [ admin, angular_user ]
+export = none
+version = 7.0.0
+modtime = 1521965592.531800100
+
+[html/demo2__dynamic_table]
+access = read : [ * ], write : [ admin, power ]
+export = none
+owner = admin
+version = 7.1.0
+modtime = 1527018800.643000300
+
+[views/angular_demo]
+owner = admin
+version = 7.1.0
+modtime = 1525888714.038000000
+
+[views/angular_examples_welcome]
+owner = admin
+version = 7.1.0
+modtime = 1527019091.613000300
+
+[views/angular_examples_details]
+version = 7.1.0
+modtime = 1527016939.160000300
