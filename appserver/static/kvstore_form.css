@@ -1,0 +1,50 @@
+a.dropdown-toggle.disabled {
+	color: #a3a3a3;
+	pointer-events:none;
+}
+
+.form-extend input {
+	width: 20% !important; 
+	padding-right: 4px !important;  
+}
+
+.form-extend select {
+	width: 70% !important;  
+}	
+
+.time_count  input{
+	width: 20% !important; 
+	padding-right: 4px !important;  
+}
+.time_count select {
+    width: 30% !important;
+}
+
+.weekday_table {
+    display: table;
+    margin-top: 15px;
+    margin-left: 10%;
+}
+
+.weekday_row {
+	display: table-row;
+}
+.weekday_cell {
+	display: table-cell;
+}
+
+.weekday_cell .checkbox {
+	margin-left: 25px;
+}
+
+.form-horizontal .control-label {
+	width: 20% !important;
+}
+
+.form-horizontal .controls {
+    margin-left: 120px;
+}
+
+.form-justified .btn-group, .form-justified .uneditable-input, .form-justified input[type=password], .form-justified input[type=text]{
+    width: 40%;
+}

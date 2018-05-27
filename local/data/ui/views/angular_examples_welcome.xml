@@ -14,24 +14,24 @@
 				<div classh="tags"/>
 			</div>
 		</a>
-		<a class="example" href="demo1__simple_binding">
-			<img src="/static/app/angular_examples/images/demo1.png"/>
+		<a class="example" href="example1__simple_binding">
+			<img src="/static/app/angular_examples/images/example1.png"/>
 				<div class="content">
 					<h3>Example1 - Simple Binding</h3>
 					<p>Create a simple binding between an input and a text</p>
 					<div classh="tags"/>
 				</div>
 			</a>
-			<a class="example" href="demo2__dynamic_table">
-				<img src="/static/app/angular_examples/images/demo2.png"/>
+			<a class="example" href="example2__dynamic_table">
+				<img src="/static/app/angular_examples/images/example2.png"/>
 					<div class="content">
 						<h3>Example2 - Dynamic Table</h3>
 						<p>Create a table based on an array. Link from a table cell to exposure more fields from the array</p>
 						<div classh="tags"/>
 					</div>
 			</a>
-			<a class="example" href="demo3__kvstore_form">
-				<img src="/static/app/angular_examples/images/demo3.png"/>
+			<a class="example" href="example3__kvstore_form">
+				<img src="/static/app/angular_examples/images/example3.png"/>
 					<div class="content">
 						<h3>Example3 - KV Store with a pop-up form</h3>
 						<p>Example 3 text</p>

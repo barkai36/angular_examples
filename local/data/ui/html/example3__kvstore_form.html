@@ -1,25 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+  
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Demo1 - Simple Binding</title>
-    <link rel="shortcut icon" href="/en-US/static/@58F5848845F9DDF4578B0DFBA0D935650C4B51E66C5E7687CD71BDDE06EA50B0.529/img/favicon.ico" />
+    <title>KVStore Form</title>
+    <link rel="shortcut icon" href="/en-US/static/@58F5848845F9DDF4578B0DFBA0D935650C4B51E66C5E7687CD71BDDE06EA50B0.193/img/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="{{SPLUNKWEB_URL_PREFIX}}/static/build/css/bootstrap-enterprise.css" />
     <link rel="stylesheet" type="text/css" href="{{SPLUNKWEB_URL_PREFIX}}/static/css/build/pages/dashboard-simple-bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="{{SPLUNKWEB_URL_PREFIX}}/static/app/angular_examples/angular_examples.css" />
-
-
-        <meta name="referrer" content="never" />
-        <meta name="referrer" content="no-referrer" />
-    
-          <script>
-                window._splunk_metrics_events = {
-                   push : function() {},
-                   active: false,
-                   }
-          </script>
-    </head>
+	<link rel="stylesheet" type="text/css" media="all" href="{{SPLUNKWEB_URL_PREFIX}}/static/app/angular_examples/kvstore_form.css" />
+    <meta name="referrer" content="never" />
+    <meta name="referrer" content="no-referrer" />
+	
+	
+</head>
 <body class="simplexml preload locale-en" data-splunk-version="7.0.0" data-splunk-product="enterprise">
 <!-- 
 BEGIN LAYOUT
@@ -37,70 +32,130 @@ styles in <div> tags, similar to Bootstrap's grid system.
     <a id="navSkip"></a>
 </header>
 <div class="dashboard-body container-fluid main-section-body" data-role="main">
+<!-- Angular starts here -->
+<div ng-app="myApp" ng-controller="myCtrl">
+
+
     <div class="dashboard-header clearfix">
-        <h2>Demo1 - Simple Binding</h2>
+		<div class="add-dashboard-controls pull-right">
+			<button class="btn btn-primary add-dashboard" data-toggle="modal" data-target="#createNew">Create new record</button>
+		</div>
+		<h2>KVStore Form</h2>
     </div>
 
-<!-- Angular demo starts here -->
-<div class="dashboard-row">
-  <div class="dashboard-panel">
-The input box is using <i>ng-model</i> feature of angular, to bind html element with a dynamic object.
-Any change to the html element dynamically changes to object, and the binded sentence changes.
-  <div ng-app="myApp" ng-controller="myCtrl">    
-  <p>Input something in the input box:</p>
-      <p>Name : <input type="text" ng-model="name" placeholder="Enter name here"/></p>
-		<h5>Hello {{name}}</h5>
 
-      <BR/>
-  </div>
 
-  <hr/>
-  <p>
-    <BR/>
-    <h5><u>HTML</u></h5>
-    <pre>
-      
-&#x3C;div ng-app=&#x22;myApp&#x22; ng-controller=&#x22;myCtrl&#x22;&#x3E;
-&#x3C;p&#x3E;Input something in the input box:&#x3C;/p&#x3E;
-&#x3C;p&#x3E;Name : &#x3C;input type=&#x22;text&#x22; ng-model=&#x22;name&#x22; placeholder=&#x22;Enter name here&#x22;/&#x3E;&#x3C;/p&#x3E;
-&#x3C;h5&#x3E;Hello {{name}}&#x3C;/h5&#x3E;
-&#x3C;BR/&#x3E;
-&#x3C;/div&#x3E;
-    </pre>
-  </p>
-  <p>
-    <h5><u>JS</u></h5>
-    <pre>
-      
-// required app for angular
-var app = angular.module(&#x27;myApp&#x27;, []);
+	<table id="list_table" class="table table-chrome table-striped" style="display: none;table-layout: fixed;">
+	  <thead class="bulk-table-head 446">
+		<th>Name</th>
+		<th>Phone</th>
+		<th>Time</th>
+		<th>Comment</th>
+        <th>Action</th>
+	  </thead>
+	  <tbody class="pages-listings">
+		<tr ng-repeat="x in list">
+			<td>{{ x.name }}</td>
+			<td>{{ x.phone }}</td>
+			<td>{{ x.time }}</td>
+			<td>{{ x.comment }}</td>
+			<td>
+				<div class="dropdown">
+                  <a class="dropdown-toggle" ng-click="delete(x)">Delete</a>
+				</div>
+			</td>
+		</tr>
+	  </tbody>
+	</table>
+	
+	<!-- Modal form pop up -->
+	<div class="modal fade" id="createNew" role="dialog" aria-hidden="true" style="display: none;">
+		<div class="modal-dialog">
 
-app.controller(&#x27;myCtrl&#x27;,[&#x27;$scope&#x27;,function($scope) {
-&#x9;require([&#x22;splunkjs/mvc&#x22;,&#x27;splunkjs/mvc/simplexml/ready!&#x27;],function(mvc) {
-&#x9;&#x9;
-&#x9;&#x9;
-&#x9;&#x9;$scope.$apply();
-&#x9;});
-}]);
+		  <!-- Modal content-->
+		  <div class="modal-content">
+			<form name="create_new_form" ng-submit="create_new_submit()">
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal">&times;</button>
+				  <h4 class="modal-title">New record</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form form-horizontal form-justified">
+						<div class="control-group shared-controls-controlgroup control-group-default">
+							<label class="control-label">Name</label>
+							<div class="controls">
+								<div class="control shared-controls-textcontrol control-default">
+									<span class="uneditable-input " data-role="uneditable-input" style="display:none"></span>
+									<input ng-model="create_new.name" type="text" id="name" name="name" class="  " value="" autocomplete="off" required=""/>
+								</div>
+							</div>
+						</div>
+                          <div class="control-group shared-controls-controlgroup control-group-default">
+							<label class="control-label">Phone</label>
+							<div class="controls">
+								<div class="control shared-controls-textcontrol control-default">
+									<span class="uneditable-input " data-role="uneditable-input" style="display:none"></span>
+									<input ng-model="create_new.phone" type="number" id="phone" name="phone" class="  " value="" autocomplete="off" required=""/>
+								</div>
+							</div>
+						</div>
+						<div class="control-group shared-controls-controlgroup control-group-default">
+								<label class="control-label">Comment</label>
+								<div class="controls">
+									<div class="control shared-controls-textcontrol control-default">
+										<span class="uneditable-input " data-role="uneditable-input" style="display:none"></span>
+										<textarea ng-model="create_new.comment" type="text" id="description" name="description" class="" placeholder="optional" style="margin-top: 0px; margin-bottom: 0px; height: 48px;"></textarea>
+									</div>
+								</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-default" data-dismiss="modal" id="cancel">Cancel</button>
+				  <input type="submit" id="submit" value="{{ create_button_label }}" class="btn btn-primary modal-btn-primary" ng-disabled="create_new_form.$invalid"></input>
+				</div>
+			</form>
+		  </div>
+		  
+		</div>
+	</div>
+	<!-- End of Modal -->
+	
+	<!-- Modal acknowledge pop up -->
+	<div class="modal fade" id="acknowledge" role="dialog" aria-hidden="true" style="display: none;">
+		<div class="modal-dialog">
+		  <!-- Modal content-->
+		  <div class="modal-content">
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal">&times;</button>
+				  <h4 class="modal-title">Status</h4>
+				</div>
+				<div class="modal-body">
+					<label class="control-label">{{ popup_message }}</label>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" id="close" class="btn btn-primary modal-btn-primary" data-dismiss="modal">Close</button>
+				</div>
+		  </div>
+		</div>
+	</div>
+	<!-- End of Modal -->
+	
 
-    </pre>
-  </p>
-  </div>
-  <!--Angular demo ends here-->
-  
+<!-- Angular ends here -->
 </div>
-  </div>
-
+  
 <!-- 
 END LAYOUT
 -->
+
 
 <script src="{{SPLUNKWEB_URL_PREFIX}}/config?autoload=1" crossorigin="use-credentials"></script>
 <script src="{{SPLUNKWEB_URL_PREFIX}}/static/js/i18n.js"></script>
 <script src="{{SPLUNKWEB_URL_PREFIX}}/i18ncatalog?autoload=1"></script>
 <script src="{{SPLUNKWEB_URL_PREFIX}}/static/build/simplexml/index.js"></script>
-<script src="{{SPLUNKWEB_URL_PREFIX}}/static/app/angular_examples/angular.min.js" type="text/javascript"></script>
-<script src="{{SPLUNKWEB_URL_PREFIX}}/static/app/angular_examples/angular_examples1.js" type="text/javascript"></script>
+<script src="{{SPLUNKWEB_URL_PREFIX}}/static/js/contrib/bootstrap-2.3.1/bootstrap-dropdown.js"></script>
+
 <script type="text/javascript">
 // <![CDATA[
 // <![CDATA[
@@ -244,10 +299,12 @@ require([
         //
 
         $('header').remove();
-        new LayoutView({"hideAppBar": false, "hideChrome": false, "hideFooter": false, "hideSplunkBar": false})
+        new LayoutView({"hideEdit": true,"hideFooter": false, "hideSplunkBar": false, "hideChrome": false, "hideAppBar": false})
             .render()
             .getContainerElement()
             .appendChild($('.dashboard-body')[0]);
+
+
 
         //
         // DASHBOARD EDITOR
@@ -257,7 +314,7 @@ require([
             id: 'dashboard',
             el: $('.dashboard-body'),
             showTitle: true,
-            editable: true
+            editable: false
         }, {tokens: true}).render();
 
 
@@ -265,6 +322,9 @@ require([
         // VIEWS: VISUALIZATION ELEMENTS
         //
 
+
+        //DashboardController.addReadyDep(element1.contentLoaded());
+        
         // Initialize time tokens to default
         if (!defaultTokenModel.has('earliest') && !defaultTokenModel.has('latest')) {
             defaultTokenModel.set({ earliest: '0', latest: '' });
@@ -284,5 +344,7 @@ require([
 );
 // ]]>
 </script>
+<script src="{{SPLUNKWEB_URL_PREFIX}}/static/app/angular_examples/angular.min.js" type="text/javascript"></script>
+<script src="{{SPLUNKWEB_URL_PREFIX}}/static/app/angular_examples/kvstore_form.js" type="text/javascript"></script>
 </body>
 </html>
