@@ -1,7 +1,11 @@
-<nav search_view="search" color="#65A637">
-  <view name="search" default='true' />
-  <view name="datasets" />
-  <view name="reports" />
-  <view name="alerts" />
+<nav search_view="search" color="#1f416d">
+  <view name="angular_examples_welcome" default='true'/>
+  <collection label="Examples">
+  	<view name="example1__simple_binding" />
+    <view name="example2__dynamic_table" />
+    <view name="example3__kvstore_form" />
+  </collection>
+  <view name="angular_examples_details" default='true'/>
   <view name="dashboards" />
+  <view name="search" />
 </nav>

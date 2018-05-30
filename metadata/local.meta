@@ -1,78 +1,15 @@
 [app/ui]
 version = 7.1.0
-modtime = 1527014663.138000300
+modtime = 1527458816.767000000
 
 [app/launcher]
 version = 7.1.0
-modtime = 1527014663.145000300
-
-[nav/default]
-version = 7.1.0
-modtime = 1527189549.560000000
+modtime = 1527458816.776000000
 
 [app/package/check_for_updates]
 version = 7.1.0
-modtime = 1527014663.148000300
-
-[]
-access = read : [ admin, angular_user ], write : [ admin, angular_user ]
-export = none
-version = 7.0.0
-modtime = 1521965592.531800100
-
-[html/demo2__dynamic_table]
-access = read : [ * ], write : [ admin, power ]
-export = none
-owner = admin
-version = 7.1.0
-modtime = 1527018800.643000300
-
-[views/angular_demo]
-owner = admin
-version = 7.1.0
-modtime = 1525888714.038000000
-
-[views/angular_examples_welcome]
-owner = admin
-version = 7.1.0
-modtime = 1527190688.891000000
-
-[views/angular_examples_details]
-version = 7.1.0
-modtime = 1527016939.160000300
-
-[html/example1__simple_binding]
-access = read : [ * ], write : [ admin, power ]
-export = none
-owner = admin
-version = 7.1.0
-modtime = 1527189590.129000000
-
-[html/example2__dynamic_table]
-access = read : [ * ], write : [ admin, power ]
-export = none
-owner = admin
-version = 7.1.0
-modtime = 1527189640.982000000
+modtime = 1527458816.780000000
 
 [html/example3__kvstore_form]
 version = 7.1.0
-modtime = 1527457299.180000000
-
-[transforms/demo_db]
-access = read : [ admin, angular_user ], write : [ admin, angular_user ]
-export = none
-owner = admin
-version = 7.1.0
-modtime = 1527450230.120000000
-
-[views/html]
-owner = admin
-version = 7.1.0
-modtime = 1527455197.339000000
-
-[html/html]
-access = read : [ admin, angular_user ], write : [ admin, angular_user ]
-owner = admin
-version = 7.1.0
-modtime = 1527455208.438000000
+modtime = 1527709233.949800600

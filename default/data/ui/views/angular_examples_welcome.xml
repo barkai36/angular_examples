@@ -34,7 +34,7 @@
 				<img src="/static/app/angular_examples/images/example3.png"/>
 					<div class="content">
 						<h3>Example3 - KV Store with a pop-up form</h3>
-						<p>Example 3 text</p>
+						<p>A records table base on KV-Stre, populated by user friendly form</p>
 						<div classh="tags"/>
 					</div>
 			</a>
