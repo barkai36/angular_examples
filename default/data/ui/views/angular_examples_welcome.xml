@@ -33,18 +33,12 @@
 			<a class="example" href="example3__kvstore_form">
 				<img src="/static/app/angular_examples/images/example3.png"/>
 					<div class="content">
-						<h3>Example3 - KV Store with a pop-up form</h3>
-						<p>A records table base on KV-Stre, populated by user friendly form</p>
+						<h3>Example3 - KV Store Records with a pop-up form</h3>
+						<p>A records table base on KV-Store, populated by user friendly form</p>
 						<div classh="tags"/>
 					</div>
 			</a>
 </div>
-<hr/>
-Special thanks to Niketnilay for his Angular example code<BR/>
-    <a href="https://wiki.splunk.com/User_talk:Niketnilay#Topic_4:_Using_Angular_JS_in_Splunk_HTML_dashboard">Take a look at his wiki user page</a>
-    
-
-    
     </html>
   </row>
 </dashboard>

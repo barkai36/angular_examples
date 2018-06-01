@@ -9,7 +9,8 @@
     <link rel="shortcut icon" href="/en-US/static/@58F5848845F9DDF4578B0DFBA0D935650C4B51E66C5E7687CD71BDDE06EA50B0.193/img/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="{{SPLUNKWEB_URL_PREFIX}}/static/build/css/bootstrap-enterprise.css" />
     <link rel="stylesheet" type="text/css" href="{{SPLUNKWEB_URL_PREFIX}}/static/css/build/pages/dashboard-simple-bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" media="all" href="{{SPLUNKWEB_URL_PREFIX}}/static/app/angular_examples/kvstore_form.css" />
+	<link rel="stylesheet" type="text/css" href="{{SPLUNKWEB_URL_PREFIX}}/static/app/angular_examples/kvstore_form.css" />
+  	<link rel="stylesheet" type="text/css" href="{{SPLUNKWEB_URL_PREFIX}}/static/app/angular_examples/angular_examples.css" />
     <meta name="referrer" content="never" />
     <meta name="referrer" content="no-referrer" />
 	
@@ -143,8 +144,228 @@ styles in <div> tags, similar to Bootstrap's grid system.
 	
 
 <!-- Angular ends here -->
+   </div>
+  
+  
+  
+  <hr/>
+  <p>
+    <BR/>
+    <h5><u>HTML</u></h5>
+    <pre>
+&lt;div ng-app=&quot;myApp&quot; ng-controller=&quot;myCtrl&quot;&gt;
+
+
+	&lt;div class=&quot;dashboard-header clearfix&quot;&gt;
+		&lt;div class=&quot;add-dashboard-controls pull-right&quot;&gt;
+			&lt;button class=&quot;btn btn-primary add-dashboard&quot; data-toggle=&quot;modal&quot; data-target=&quot;#createNew&quot;&gt;Create new record&lt;/button&gt;
+		&lt;/div&gt;
+		&lt;h2&gt;KVStore Form&lt;/h2&gt;
+	&lt;/div&gt;
+
+
+
+	&lt;table id=&quot;list_table&quot; class=&quot;table table-chrome table-striped&quot; style=&quot;display: none;table-layout: fixed;&quot;&gt;
+		&lt;thead class=&quot;bulk-table-head 446&quot;&gt;
+			&lt;th&gt;Name&lt;/th&gt;
+			&lt;th&gt;Phone&lt;/th&gt;
+			&lt;th&gt;Time&lt;/th&gt;
+			&lt;th&gt;Comment&lt;/th&gt;
+			&lt;th&gt;Action&lt;/th&gt;
+		&lt;/thead&gt;
+		&lt;tbody class=&quot;pages-listings&quot;&gt;
+			&lt;tr ng-repeat=&quot;x in list&quot;&gt;
+				&lt;td&gt;{{ x.name }}&lt;/td&gt;
+				&lt;td&gt;{{ x.phone }}&lt;/td&gt;
+				&lt;td&gt;{{ x.time }}&lt;/td&gt;
+				&lt;td&gt;{{ x.comment }}&lt;/td&gt;
+				&lt;td&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;a class=&quot;dropdown-toggle&quot; ng-click=&quot;delete(x)&quot;&gt;Delete&lt;/a&gt;
+					&lt;/div&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+
+	&lt;!-- Modal form pop up --&gt;
+	&lt;div class=&quot;modal fade&quot; id=&quot;createNew&quot; role=&quot;dialog&quot; aria-hidden=&quot;true&quot; style=&quot;display: none;&quot;&gt;
+		&lt;div class=&quot;modal-dialog&quot;&gt;
+
+			&lt;!-- Modal content--&gt;
+			&lt;div class=&quot;modal-content&quot;&gt;
+				&lt;form name=&quot;create_new_form&quot; ng-submit=&quot;create_new_submit()&quot;&gt;
+					&lt;div class=&quot;modal-header&quot;&gt;
+						&lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot;&gt;&lt;![CDATA[&amp;times;]]&gt;&lt;/button&gt;
+						&lt;h4 class=&quot;modal-title&quot;&gt;New record&lt;/h4&gt;
+					&lt;/div&gt;
+					&lt;div class=&quot;modal-body&quot;&gt;
+						&lt;div class=&quot;form form-horizontal form-justified&quot;&gt;
+							&lt;div class=&quot;control-group shared-controls-controlgroup control-group-default&quot;&gt;
+								&lt;label class=&quot;control-label&quot;&gt;Name&lt;/label&gt;
+								&lt;div class=&quot;controls&quot;&gt;
+									&lt;div class=&quot;control shared-controls-textcontrol control-default&quot;&gt;
+										&lt;span class=&quot;uneditable-input &quot; data-role=&quot;uneditable-input&quot; style=&quot;display:none&quot;&gt;&lt;/span&gt;
+										&lt;input ng-model=&quot;create_new.name&quot; type=&quot;text&quot; id=&quot;name&quot; name=&quot;name&quot; class=&quot;  &quot; value=&quot;&quot; autocomplete=&quot;off&quot; required=&quot;&quot;/&gt;
+									&lt;/div&gt;
+								&lt;/div&gt;
+							&lt;/div&gt;
+							&lt;div class=&quot;control-group shared-controls-controlgroup control-group-default&quot;&gt;
+								&lt;label class=&quot;control-label&quot;&gt;Phone&lt;/label&gt;
+								&lt;div class=&quot;controls&quot;&gt;
+									&lt;div class=&quot;control shared-controls-textcontrol control-default&quot;&gt;
+										&lt;span class=&quot;uneditable-input &quot; data-role=&quot;uneditable-input&quot; style=&quot;display:none&quot;&gt;&lt;/span&gt;
+										&lt;input ng-model=&quot;create_new.phone&quot; type=&quot;number&quot; id=&quot;phone&quot; name=&quot;phone&quot; class=&quot;  &quot; value=&quot;&quot; autocomplete=&quot;off&quot; required=&quot;&quot;/&gt;
+									&lt;/div&gt;
+								&lt;/div&gt;
+							&lt;/div&gt;
+							&lt;div class=&quot;control-group shared-controls-controlgroup control-group-default&quot;&gt;
+								&lt;label class=&quot;control-label&quot;&gt;Comment&lt;/label&gt;
+								&lt;div class=&quot;controls&quot;&gt;
+									&lt;div class=&quot;control shared-controls-textcontrol control-default&quot;&gt;
+										&lt;span class=&quot;uneditable-input &quot; data-role=&quot;uneditable-input&quot; style=&quot;display:none&quot;&gt;&lt;/span&gt;
+										&lt;textarea ng-model=&quot;create_new.comment&quot; type=&quot;text&quot; id=&quot;description&quot; name=&quot;description&quot; class=&quot;&quot; placeholder=&quot;optional&quot; style=&quot;margin-top: 0px; margin-bottom: 0px; height: 48px;&quot;&gt;&lt;/textarea&gt;
+									&lt;/div&gt;
+								&lt;/div&gt;
+							&lt;/div&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+					&lt;div class=&quot;modal-footer&quot;&gt;
+						&lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; data-dismiss=&quot;modal&quot; id=&quot;cancel&quot;&gt;Cancel&lt;/button&gt;
+						&lt;input type=&quot;submit&quot; id=&quot;submit&quot; value=&quot;{{ create_button_label }}&quot; class=&quot;btn btn-primary modal-btn-primary&quot; ng-disabled=&quot;create_new_form.$invalid&quot;&gt;&lt;/input&gt;
+					&lt;/div&gt;
+				&lt;/form&gt;
+			&lt;/div&gt;
+
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;!-- End of Modal --&gt;
+
+	&lt;!-- Modal acknowledge pop up --&gt;
+	&lt;div class=&quot;modal fade&quot; id=&quot;acknowledge&quot; role=&quot;dialog&quot; aria-hidden=&quot;true&quot; style=&quot;display: none;&quot;&gt;
+		&lt;div class=&quot;modal-dialog&quot;&gt;
+			&lt;!-- Modal content--&gt;
+			&lt;div class=&quot;modal-content&quot;&gt;
+				&lt;div class=&quot;modal-header&quot;&gt;
+					&lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot;&gt;&lt;![CDATA[&amp;times;]]&gt;&lt;/button&gt;
+					&lt;h4 class=&quot;modal-title&quot;&gt;Status&lt;/h4&gt;
+				&lt;/div&gt;
+				&lt;div class=&quot;modal-body&quot;&gt;
+					&lt;label class=&quot;control-label&quot;&gt;{{ popup_message }}&lt;/label&gt;
+				&lt;/div&gt;
+				&lt;div class=&quot;modal-footer&quot;&gt;
+					&lt;button type=&quot;button&quot; id=&quot;close&quot; class=&quot;btn btn-primary modal-btn-primary&quot; data-dismiss=&quot;modal&quot;&gt;Close&lt;/button&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;!-- End of Modal --&gt;
+
+
+	&lt;!-- Angular ends here --&gt;
+&lt;/div&gt;
+    </pre>
+  </p>
+  <p>
+    <h5><u>JS</u></h5>
+    <pre>
+// required app for angular
+var kv_store_db = "demo_db";
+var request_url = "storage/collections/data/"+kv_store_db;
+
+$("#acknowledge").on("hidden", function () {
+	location.reload(); // refresh after new data has been added
+});
+
+var app = angular.module('myApp', []);
+
+// Convert date+time in epoch pattern to string
+function dateToString(epoch_date) {
+	var d = new Date(0);
+	d.setUTCSeconds(epoch_date);
+	date_string = ("0" + d.getDate()).slice(-2)+"/"+
+	("0" + (d.getMonth()+1)).slice(-2)+"/"+
+	d.getFullYear()+" "+
+	("0" + d.getHours()).slice(-2)+":"+
+	("0" + d.getMinutes()).slice(-2)+":"+
+	("0" + d.getSeconds()).slice(-2);
+	return date_string;
+}
+
+
+app.controller('myCtrl',['$scope',function($scope) {
+	require(["splunkjs/mvc",'splunkjs/mvc/simplexml/ready!'],function(mvc) {
+		
+		$scope.create_button_label = "Submit";
+		var service = mvc.createService({ owner: "nobody" });
+		var db_rows;
+		req = service.request(
+			request_url,
+			"GET",
+			null,
+			null,
+			{"Content-Type": "application/json"},
+			null);
+		req.then(function(response) {
+			$scope.list = JSON.parse(response);
+			$scope.list.forEach(function(row) {
+				row.time = dateToString(row.time/1000); // calculate start time from miliseconds]
+			});
+				
+			$scope.$apply();
+			$('#list_table').show();
+		});
+		
+		// Actions when submit pressed
+		$scope.create_new_submit = function() {
+			var submit_data = {
+							'name' : $scope.create_new.name,
+							'phone' : $scope.create_new.phone,
+							'time' : new Date().getTime(),
+							'comment' : $scope.create_new.comment
+							}
+			service.request(
+							  request_url,
+							  "POST",
+							  null,
+							  null,
+							  JSON.stringify(submit_data),
+							  {"Content-Type": "application/json"},
+							  null);
+			$("#createNew").modal('toggle'); // hide form popup 
+			$scope.popup_message = "New record submitted";
+			$("#acknowledge").modal(); // show acknowledge popup
+		};
+		
+		// Delete action function
+		$scope.delete = function(row) {
+			keyid = row._key;
+			service.del(request_url + "/" + encodeURIComponent(keyid))
+				.done(function() { 
+					$scope.popup_message = "Record deleted";
+					$scope.$apply();
+					$("#acknowledge").modal('toggle'); // show acknowledge popup
+			});
+	}
+	});
+}]);
+
+//# sourceURL=kvstore_form.js
+          </pre>
+  </p>
+
+  
+
+  
+  
+  
+  
 </div>
-</div>
+
+
+  
+
+  
 <!-- 
 END LAYOUT
 -->
